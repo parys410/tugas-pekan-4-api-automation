@@ -2,11 +2,11 @@ const fs = require("fs");
 const path = require("path");
 const fileName = path.join(__dirname, '..', "/data/data.json");
 
-async function readFile() {
+function readFile() {
   try {
     console.log(fileName);
-    const fileContent = await fs.promises.readFile(fileName);
-    const jsonData = await JSON.parse(fileContent);
+    const fileContent = fs.readFileSync(fileName, "utf8");
+    const jsonData = JSON.parse(fileContent);
     return {
       success: true,
       data: jsonData,
@@ -19,23 +19,16 @@ async function readFile() {
   }
 }
 
-async function writeFile(key, data) {
+function writeFile(key, data) {
   try {
-    const fileContent = await fs.promises.readFile(fileName);
-    const jsonData = await JSON.parse(fileContent);
+    const fileContent = fs.readFileSync(fileName, "utf8");
+    const jsonData = JSON.parse(fileContent);
     jsonData[key] = data;
 
     const stringifiedContent = JSON.stringify(jsonData);
-    const writeData = await fs.promises.writeFile(fileName, stringifiedContent);
-    return {
-      success: true,
-      message: 'The File is successfully saved',
-    };
+    fs.writeFileSync(fileName, stringifiedContent);
   } catch (e) {
-    return {
-      success: false,
-      message: 'Could not save file',
-    };
+    // Do nothing
   }
 }
 
