@@ -1,7 +1,7 @@
 const request = require("supertest")("http://restapi.adequateshop.com/api/");
 const expect = require("chai").expect;
 const should = require("chai").should();
-const { readFile, writeFile } = require("../helper/fileHelper.js");
+const { readFile, writeFile, getRandomNumber } = require("../helper/fileHelper.js");
 
 const registerAccountSuccess = {
   "name": "Ary",
@@ -49,8 +49,3 @@ describe("POST /authaccount/registration", () => {
     should.not.exist(response.body.data);
   });
 });
-
-function getRandomNumber() {
-  const randomNumber = Math.floor((Math.random() * 1000000) + 1);
-  return randomNumber;
-}

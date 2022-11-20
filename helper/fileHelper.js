@@ -32,4 +32,9 @@ function writeFile(key, data) {
   }
 }
 
-module.exports = { readFile, writeFile };
+function getRandomNumber() {
+  const randomNumber = Math.floor((Math.random() * 1000000) + 1);
+  return randomNumber;
+}
+
+module.exports = { readFile, writeFile, getRandomNumber };
