@@ -4,7 +4,6 @@ const fileName = path.join(__dirname, '..', "/data/data.json");
 
 function readFile() {
   try {
-    console.log(fileName);
     const fileContent = fs.readFileSync(fileName, "utf8");
     const jsonData = JSON.parse(fileContent);
     return {
